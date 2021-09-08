@@ -44,7 +44,7 @@ test {
 }
 compileJava.doFirst { 
 
-   		String content = new File('ext/templates/index.html').getText('UTF-8').replace('src="js/index.js"', 'th:src="@{/js/index.js}"').replace('href="styles/main.css"', 'th:href="@{/styles/main.css}"')
+   		String content = new File('ext/templates/index.html').getText('UTF-8').replace('src="js/index.js"', 'th:src="@{/js/index.min.js}"').replace('href="styles/main.css"', 'th:href="@{/styles/main.css}"')
    		
         def appFile = new File('src/main/resources/templates/index.html')
 		
@@ -66,13 +66,13 @@ compileJava.doFirst {
 
 
 
-tasks.register('hello') {
+tasks.register('dev') {
     doLast {
         println 'Hello world!'
         
-        String content = new File('ext/templates/index.html').getText('UTF-8').replace('src="js/index.js"', 'th:src="@{/js/index.js}"')
-        
-        def appFile = new File('src/main/resources/templates/app1.html')
+     	String content = new File('ext/templates/index.html').getText('UTF-8').replace('src="js/index.js"', 'th:src="@{/js/index.js}"').replace('href="styles/main.css"', 'th:href="@{/styles/main.css}"')
+   		
+        def appFile = new File('src/main/resources/templates/index.html')
 		
 		appFile.write(content)
 
@@ -81,7 +81,12 @@ tasks.register('hello') {
 			from 'ext/templates/js'
     		into 'src/main/resources/static/js'	
      	}
-     	println content
+     	
+     	copy{
+		
+			from 'ext/templates/styles'
+    		into 'src/main/resources/static/styles'	
+     	}
     }
 }
 
