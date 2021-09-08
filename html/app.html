@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Hello World!</title>
+         <link href="styles/main.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h2 th:inline="text">Hello from App [[${#httpServletRequest.remoteUser}]]!</h2>
+        
+        <button type="button" th:onclick="showAlert()">Show Alert</button>
+        
+        
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </body>
+    <script type="text/javascript" src="js/actions.js"></script>
+</html>

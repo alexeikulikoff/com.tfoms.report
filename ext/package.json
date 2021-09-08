@@ -1,0 +1,20 @@
+{
+  "name": "ext",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "js:dev": "rollup -c -w",
+    "js:prod": "rollup -c",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "rollup": "^2.56.3"
+  },
+  "dependencies": {
+    "http-server": "^13.0.1",
+    "live-server": "^1.2.1"
+  }
+}
