@@ -43,23 +43,21 @@ test {
 	useJUnitPlatform()
 }
 compileJava.doFirst { 
-
-   		String content = new File('ext/templates/index.html').getText('UTF-8').replace('src="js/index.js"', 'th:src="@{/js/index.min.js}"').replace('href="styles/main.css"', 'th:href="@{/styles/main.css}"')
+ 
+     String page1 = new File('ext/dist/page1.html').getText('UTF-8').replace('src="page1.js"', 'th:src="@{/js/page1.js}"') // .replace('href="styles/main.css"', 'th:href="@{/styles/main.css}"')
+   		String page2 = new File('ext/dist/page2.html').getText('UTF-8').replace('src="page2.js"', 'th:src="@{/js/page2.js}"') // .replace('href="styles/main.css"', 'th:href="@{/styles/main.css}"')
+   	
    		
-        def appFile = new File('src/main/resources/templates/index.html')
+        def appPage1 = new File('src/main/resources/templates/page1.html')
+        def appPage2 = new File('src/main/resources/templates/page2.html')
 		
-		appFile.write(content)
+		appPage1.write(page1)
+		appPage2.write(page2)
 
 		copy{
 		
-			from 'ext/templates/js'
+			from 'ext/dist/*.js'
     		into 'src/main/resources/static/js'	
-     	}
-     	
-     	copy{
-		
-			from 'ext/templates/styles'
-    		into 'src/main/resources/static/styles'	
      	}
 
  }
@@ -70,24 +68,31 @@ tasks.register('dev') {
     doLast {
         println 'Hello world!'
         
-     	String content = new File('ext/templates/index.html').getText('UTF-8').replace('src="js/index.js"', 'th:src="@{/js/index.js}"').replace('href="styles/main.css"', 'th:href="@{/styles/main.css}"')
+        String page1 = new File('ext/dist/page1.html').getText('UTF-8').replace('src="page1.js"', 'th:src="@{/js/page1.js}"') // .replace('href="styles/main.css"', 'th:href="@{/styles/main.css}"')
+   		String page2 = new File('ext/dist/page2.html').getText('UTF-8').replace('src="page2.js"', 'th:src="@{/js/page2.js}"') // .replace('href="styles/main.css"', 'th:href="@{/styles/main.css}"')
+   	
    		
-        def appFile = new File('src/main/resources/templates/index.html')
+        def appPage1 = new File('src/main/resources/templates/page1.html')
+        def appPage2 = new File('src/main/resources/templates/page2.html')
 		
-		appFile.write(content)
+		appPage1.write(page1)
+		appPage2.write(page2)
 
 		copy{
 		
-			from 'ext/templates/js'
+			from 'ext/dist'
+			include '*.js'
     		into 'src/main/resources/static/js'	
      	}
      	
-     	copy{
+ //    	copy{
 		
-			from 'ext/templates/styles'
-    		into 'src/main/resources/static/styles'	
-     	}
-    }
+//			from 'ext/templates/styles'
+//    		into 'src/main/resources/static/styles'	
+//     	}
+
+  }  
+     
 }
 
 
